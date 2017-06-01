@@ -11,8 +11,8 @@
  * Numbers will have equal set of digits
  * The number of digits in the numbers is a power of 2.
  *
- * We'll put a guard operator to display an error. Since this is an exercise,
- * I probably won't generalize it.
+ * We'll put a guard operator to display an incorrect inputs. Since this is an
+ * exercise, I probably won't generalize it.
  */
 
 $argumentNumber = count($argv) - 1;
@@ -20,8 +20,7 @@ if ($argumentNumber !== 2) {
     echo "Only two arguments allowed. You provided {$argumentNumber}\n";
     exit(1);
 }
-/** given the large numbers involved, we'll need to use BC Math and treat these
- * as strings
+/**
  */
 $x = $argv[1];
 $y = $argv[2];
@@ -41,7 +40,6 @@ if ($x < 0 || $y < 0) {
 function digits( $integer) : int
 {
     $digits = preg_match_all("/[0-9]/", $integer);
-    echo "The digits are {$digits}\n";
     return $digits;
 }
 
@@ -72,7 +70,7 @@ function karatsubaMultiplication( $x, $y) : string
 
     /** Base case if the number of digits is one */
     if ($digits == 1) {
-        return $x * $y;
+        return gmp_mul($x,$y);
     }
 
     $halfDigits = $digits / 2;
